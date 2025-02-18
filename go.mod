@@ -1,4 +1,4 @@
-module github.com/ClusterLabs/go-pacemaker
+module github.com/aleksei-burlakov/go-pacemaker
 
 go 1.13
 

@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/ClusterLabs/go-pacemaker"
+	"github.com/aleksei-burlakov/go-pacemaker"
 )
 
 var verbose = flag.Bool("verbose", false, "print whole cib on each update")

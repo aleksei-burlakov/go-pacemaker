@@ -4,11 +4,12 @@ package pacemaker_test
 
 import (
 	"fmt"
-	"github.com/ClusterLabs/go-pacemaker"
-	"gopkg.in/xmlpath.v2"
 	"log"
 	"strings"
 	"testing"
+
+	"github.com/aleksei-burlakov/go-pacemaker"
+	"gopkg.in/xmlpath.v2"
 )
 
 func TestXmlpath(t *testing.T) {
