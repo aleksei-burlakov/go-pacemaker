@@ -5,6 +5,7 @@ package pacemaker
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -238,6 +239,11 @@ func (doc *CibDocument) Version() *CibVersion {
 
 func (doc *CibDocument) ToString() string {
 	buffer := C.dump_xml_unformatted(doc.xml)
+
+	f, _ := os.OpenFile("output.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f.Write([]byte("Hello, World!\n"))
+	f.Close()
+
 	defer C.free(unsafe.Pointer(buffer))
 	return C.GoString(buffer)
 }
