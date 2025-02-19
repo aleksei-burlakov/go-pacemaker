@@ -6,6 +6,7 @@ package pacemaker
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -241,7 +242,19 @@ func (doc *CibDocument) ToString() string {
 	buffer := C.dump_xml_unformatted(doc.xml)
 
 	f, _ := os.OpenFile("output.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	f.Write([]byte("Hello, World!\n"))
+	f.Write([]byte("BEGIN-MSG:\n"))
+	f.Write([]byte(C.GoString(buffer)))
+	f.Write([]byte("\nMIDDLE-MSG:\n"))
+
+	cmd := exec.Command("/usr/sbin/cibadmin", "--query") // Invalid command for testing
+	output, err := cmd.CombinedOutput()
+
+	if err != nil {
+		fmt.Println("Error:", err)
+	}
+
+	f.Write([]byte(string(output)))
+	f.Write([]byte("\nEND-MSG:\n"))
 	f.Close()
 
 	defer C.free(unsafe.Pointer(buffer))
