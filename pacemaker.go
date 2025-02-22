@@ -70,6 +70,7 @@ type CibConnection int
 
 const (
 	Query              CibConnection = C.cib_query
+	QueryXPath         CibConnection = C.cib_xpath
 	Command            CibConnection = C.cib_command
 	NoConnection       CibConnection = C.cib_no_connection
 	CommandNonBlocking CibConnection = C.cib_command_nonblocking
